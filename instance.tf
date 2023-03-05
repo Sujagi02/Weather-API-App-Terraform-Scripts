@@ -22,6 +22,8 @@ resource "aws_instance" "weather-api-app" {
   sudo systemctl start httpd
   sudo systemctl enable docker.service
   sudo systemctl start docker.service
+  docker pull 168964762296.dkr.ecr.ap-south-1.amazonaws.com/weather-api-application:latest
+  docker run -d 168964762296.dkr.ecr.ap-south-1.amazonaws.com/weather-api-application
   EOF
 
   tags = {
