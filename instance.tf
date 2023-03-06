@@ -35,7 +35,6 @@ resource "aws_instance" "weather-api-app" {
   # }
 }
 
-
 output "public-ip" {
   value = aws_instance.weather-api-app.public_ip
 }
