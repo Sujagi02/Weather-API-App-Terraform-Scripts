@@ -33,9 +33,9 @@ resource "aws_instance" "weather-api-app" {
   #     "sudo systemctl start httpd"
   #   ]
   # }
+}
 
 
 output "public-ip" {
   value = aws_instance.weather-api-app.public_ip
-}
 }
