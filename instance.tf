@@ -14,21 +14,6 @@ resource "aws_instance" "weather-api-app" {
   vpc_security_group_ids = ["${aws_security_group.weather-api-app-sg.id}"]
   user_data              = file("install_app.sh")
 
-
-  # user_data = <<-EOF
-  # #!/bin/bash
-  # sudo yum -y update
-  # sudo yum -y install httpd
-  # sudo yum -y install docker
-  # sudo systemctl enable httpd
-  # sudo systemctl start httpd
-  # sudo systemctl enable docker.service
-  # sudo systemctl start docker.service
-  # aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 168964762296.dkr.ecr.ap-south-1.amazonaws.com
-  # sudo docker pull 168964762296.dkr.ecr.ap-south-1.amazonaws.com/weather-api-application:latest
-  # sudo docker run -d 168964762296.dkr.ecr.ap-south-1.amazonaws.com/weather-api-application
-  # EOF
-
   tags = {
     "Name" = "Weather API Application"
   }
@@ -40,8 +25,6 @@ resource "aws_instance" "weather-api-app" {
   #   host        = self.public_ip
   # }
 
-
-
   # provisioner "remote-exec" {
   #   inline = [
   #     "sudo yum update",
@@ -51,21 +34,8 @@ resource "aws_instance" "weather-api-app" {
   #   ]
   # }
 
-  #   provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo chmod -R o+rw /var/www/html",
-  #     "sudo echo 'Hey this is a script from remote-exec' > /var/www/html/tf.html"
-  #   ]
-  # }
-
-  # provisioner "file" {
-  #   source      = "index.html"
-  #   destination = "/var/www/html/index.html"
-  # }
-
-}
 
 output "public-ip" {
   value = aws_instance.weather-api-app.public_ip
-
+}
 }
